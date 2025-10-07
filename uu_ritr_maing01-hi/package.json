@@ -1,0 +1,59 @@
+{
+  "name": "uu_ritr_maing01-hi",
+  "version": "0.1.0",
+  "private": true,
+  "description": "",
+  "license": "License Commercial",
+  "namespace": "UuRitr",
+  "spec": "uu5-app; uu_appg01_devkit@5.22.1",
+  "dependencies": {
+    "uu5g04": "^1.57.2",
+    "uu5g05": "^1.22.1",
+    "uu5g05-browser-compatibility": "^1.22.1",
+    "uu5g05-elements": "^1.22.1",
+    "uu5g05-forms": "^1.22.1",
+    "uu5loaderg01": "^1.6.1",
+    "uu_plus4u5g02": "^1.22.2",
+    "uu_plus4u5g02-app": "^1.22.2",
+    "uu_plus4u5g02-elements": "^1.22.2"
+  },
+  "uuBuildSettings": {
+    "externals": {}
+  },
+  "devDependencies": {
+    "uu_appg01_devkit": "^5.22.1",
+    "uu5g05-test": "^1.22.1",
+    "uu_cloudg02-devkit": "^0.15.3"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "scripts": {
+    "clean": "uu_appg01_devkit clean",
+    "test": "uu_appg01_devkit test",
+    "build": "uu_appg01_devkit build",
+    "package": "uu_appg01_devkit package",
+    "start": "uu_appg01_devkit start",
+    "prettify": "uu_appg01_devkit prettify",
+    "vulnerabilityScan": "uu_appg01_devkit vulnerabilityScan",
+    "generate": "uu_appg01_devkit generate",
+    "lsiExport": "uu_appg01_devkit lsiExport",
+    "lsiImport": "uu_appg01_devkit lsiImport",
+    "uuAppDevKitUpgrade": "uu_appg01_devkit uuAppDevKitUpgrade",
+    "uuCloudg02AppBoxCopy": "uu_cloudg02-devkit appBoxCopy",
+    "uuCloudg02AppBoxExport": "uu_cloudg02-devkit appBoxExport",
+    "uuCloudg02AppBoxImport": "uu_cloudg02-devkit appBoxImport",
+    "uuCloudg02AppBox": "uu_cloudg02-devkit appBox",
+    "uuCloudg02CleanResources": "uu_cloudg02-devkit cleanResources",
+    "uuCloudg02DeployList": "uu_cloudg02-devkit deployList",
+    "uuCloudg02Deploy": "uu_cloudg02-devkit deploy",
+    "uuCloudg02LogExport": "uu_cloudg02-devkit logExport",
+    "uuCloudg02Swap": "uu_cloudg02-devkit swap",
+    "uuCloudg02Undeploy": "uu_cloudg02-devkit undeploy",
+    "uuCloudg02VerifySignature": "uu_cloudg02-devkit verifySignature",
+    "uuCloudg02VulnerabilityScan": "uu_cloudg02-devkit vulnerabilityScan"
+  },
+  "prettier": {
+    "printWidth": 120
+  }
+}

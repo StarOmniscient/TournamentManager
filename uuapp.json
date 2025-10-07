@@ -1,0 +1,20 @@
+{
+  "product": "uu_ritr_maing01",
+  "version": "0.1.0",
+  "license": "License Commercial",
+  "description": {
+    "en": "",
+    "cs": ""
+  },
+  "devkit": {
+    "development": {
+      "appBoxLocationUri": "----- VALUE REQUIRED -----",
+      "appDeploymentUri": null,
+      "uuCloudUniverseBaseUri": "----- VALUE REQUIRED -----",
+      "uuCloudLogStoreBaseUri": "----- VALUE REQUIRED -----",
+      "uuAppBoxRegistryBaseUri": "----- VALUE REQUIRED -----"
+    }
+  },
+  "uu_ritr_maing01-hi": {},
+  "uu_ritr_maing01-server": {}
+}
