@@ -25,6 +25,16 @@
         "realization": "index.html",
         "httpMethod": "GET",
         "type": "UVE"
+      },
+      "player/create": {
+        "realization": "api/controllers/PlayerController.create",
+        "httpMethod": "POST",
+        "type": "CMD"
+      },
+      "player/update": {
+        "realization": "api/controllers/PlayerController.update",
+        "httpMethod": "POST",
+        "type": "CMD"
       }
     }
   }

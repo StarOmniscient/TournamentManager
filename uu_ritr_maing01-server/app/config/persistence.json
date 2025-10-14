@@ -6,6 +6,9 @@
       "schemaMap": {
         "ritrMain": {
           "realization": "dao/RitrMainMongo"
+        },
+        "player": {
+          "realization": "dao/PlayerMongo"
         }
       }
     }
