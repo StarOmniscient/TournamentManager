@@ -55,6 +55,7 @@ let login = createVisualComponent({
   setLoading(true);
   setError(null);
 
+  const res = await Calls.login({ username, password })
 
 }
     //@@viewOff:private

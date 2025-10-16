@@ -3,21 +3,25 @@ const Path = require("path");
 const { Validator } = require("uu_appg01_server").Validation;
 const { DaoFactory } = require("uu_appg01_server").ObjectStore;
 const { ValidationHelper } = require("uu_appg01_server").AppServer;
-const Errors = require("../api/errors/player-error.js");
+const Errors = require("../api/errors/team-error.js");
 
 const WARNINGS = {
 
 };
 
-class PlayerAbl {
+class TeamAbl {
 
   constructor() {
     this.validator = Validator.load();
-    // this.dao = DaoFactory.getDao("player");
+    this.dao = DaoFactory.getDao("team");
+  }
+
+  async list(awid, dtoIn) {
+    
   }
 
   async get(awid, dtoIn) {
-    const validationResult = this.validator.validate("PlayerGetDtoInType", dtoIn);
+    const validationResult = this.validator.validate("TeamGetDtoInType", dtoIn);
 
     if (!validationResult.isValid()) {
       throw new Error("InvalidDtoIn");
@@ -25,7 +29,7 @@ class PlayerAbl {
   }
 
   async update(awid, dtoIn) {
-      const validationResult = this.validator.validate("PlayerUpdateDtoInType", dtoIn);
+    const validationResult = this.validator.validate("TeamUpdateDtoInType", dtoIn);
 
     if (!validationResult.isValid()) {
       throw new Error("InvalidDtoIn");
@@ -33,7 +37,7 @@ class PlayerAbl {
   }
 
   async create(awid, dtoIn) {
-    const validationResult = this.validator.validate("PlayerCreateDtoInType", dtoIn);
+    const validationResult = this.validator.validate("TeamCreateDtoInType", dtoIn);
 
     if (!validationResult.isValid()) {
       throw new Error("InvalidDtoIn");
@@ -42,4 +46,4 @@ class PlayerAbl {
 
 }
 
-module.exports = new PlayerAbl();
+module.exports = new TeamAbl();

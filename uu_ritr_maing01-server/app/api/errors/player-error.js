@@ -13,7 +13,13 @@ const Update = {
 
 };
 
+const Get = {
+  UC_CODE: `${PLAYER_ERROR_PREFIX}get/`,
+
+};
+
 module.exports = {
+  Get,
   Update,
   Create
 };

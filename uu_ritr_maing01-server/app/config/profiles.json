@@ -32,6 +32,46 @@
       "player/update": {
         "sysStateList": ["active"],
         "profileList": []
+      },
+      "login": {
+        "sysStateList": ["active"],
+        "profileList": ["Public","Executives","AwidLicenseOwner","AsidAuthorities","AsidExecutives","AsidLicenseOwner","Authenticated","AwidInitiator"]
+      },
+      "tournament/create": {
+        "sysStateList": ["active"],
+        "profileList": ["Public"]
+      },
+      "tournament/update": {
+        "sysStateList": ["active"],
+        "profileList": ["Public"]
+      },
+      "tournament/get": {
+        "sysStateList": ["active"],
+        "profileList": ["Public"]
+      },
+      "tournament/list": {
+        "sysStateList": ["active"],
+        "profileList": ["Public"]
+      },
+      "player/get": {
+        "sysStateList": ["active"],
+        "profileList": ["Public"]
+      },
+      "team/create": {
+        "sysStateList": ["active"],
+        "profileList": ["Public"]
+      },
+      "team/update": {
+        "sysStateList": ["active"],
+        "profileList": ["Public"]
+      },
+      "team/get": {
+        "sysStateList": ["active"],
+        "profileList": ["Public"]
+      },
+      "team/list": {
+        "sysStateList": ["active"],
+        "profileList": ["Public"]
       }
     }
   }

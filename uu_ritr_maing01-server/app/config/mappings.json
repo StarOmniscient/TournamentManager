@@ -35,6 +35,51 @@
         "realization": "api/controllers/PlayerController.update",
         "httpMethod": "POST",
         "type": "CMD"
+      },
+      "tournament/create": {
+        "realization": "api/controllers/TournamentController.create",
+        "httpMethod": "POST",
+        "type": "CMD"
+      },
+      "tournament/update": {
+        "realization": "api/controllers/TournamentController.update",
+        "httpMethod": "POST",
+        "type": "CMD"
+      },
+      "tournament/get": {
+        "realization": "api/controllers/TournamentController.get",
+        "httpMethod": "GET",
+        "type": "CMD"
+      },
+      "tournament/list": {
+        "realization": "api/controllers/TournamentController.list",
+        "httpMethod": "GET",
+        "type": "CMD"
+      },
+      "player/get": {
+        "realization": "api/controllers/PlayerController.get",
+        "httpMethod": "GET",
+        "type": "CMD"
+      },
+      "team/create": {
+        "realization": "api/controllers/TeamController.create",
+        "httpMethod": "POST",
+        "type": "CMD"
+      },
+      "team/update": {
+        "realization": "api/controllers/TeamController.update",
+        "httpMethod": "POST",
+        "type": "CMD"
+      },
+      "team/get": {
+        "realization": "api/controllers/TeamController.get",
+        "httpMethod": "GET",
+        "type": "CMD"
+      },
+      "team/list": {
+        "realization": "api/controllers/TeamController.list",
+        "httpMethod": "GET",
+        "type": "CMD"
       }
     }
   }
