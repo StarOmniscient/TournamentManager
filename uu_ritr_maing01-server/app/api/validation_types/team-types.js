@@ -16,8 +16,8 @@ const TeamUpdateDtoInType = shape({
     name: uu5String(255),
     players: 
         shape({
-            id: uu5String(255).isRequired(),
-            name: uu5String(255).isRequired()
+            id: uu5String(255),
+            name: uu5String(255)
         }
     ),
     tournamentId: uu5String(255)

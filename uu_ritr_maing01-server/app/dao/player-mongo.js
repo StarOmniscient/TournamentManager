@@ -19,6 +19,13 @@ class PlayerMongo extends UuObjectDao {
     return await super.findOne(filter);
   }
 
+  async getAll(awid) {
+    let filter = {
+      awid: awid,
+    };
+    return await super.find(filter);
+  }
+
   async update(uuObject) {
     let filter = {
       awid: uuObject.awid,
