@@ -7,12 +7,12 @@ const TournamentCreateDtoInType = shape({
     endDate: date().isRequired(),
     status: oneOf(["ongoing", "finished", "cancelled", "upcoming", "registration"]).isRequired(),
     teamSize: integer().isRequired(),
-    teams: 
+    teams:
         shape({
-            id: uu5String(255).isRequired(),
-            name: uu5String(255).isRequired()
+            id: uu5String(255).isRequired()
+
         })
-    
+
 })
 
 const TournamentUpdateDtoInType = shape({
@@ -22,12 +22,12 @@ const TournamentUpdateDtoInType = shape({
     endDate: date(),
     status: oneOf(["ongoing", "finished", "cancelled", "upcoming", "registration"]),
     teamSize: integer(),
-    teams: 
+    teams:
         shape({
-            id: uu5String(255).isRequired(),
-            name: uu5String(255).isRequired()
+            id: uu5String(255).isRequired()
+
         })
-    
+
 })
 
 const TournamentGetDtoInType = shape({

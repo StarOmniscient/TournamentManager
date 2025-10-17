@@ -1,11 +1,11 @@
 /* eslint-disable */
 
 const TeamCreateDtoInType = shape({
-    name: uu5String(255).isRequired(),
-    players: 
+  name: uu5String(255).isRequired(),
+    players:
         shape({
-            id: uu5String(255).isRequired(),
-            name: uu5String(255).isRequired()
+            id: uu5String(255).isRequired()
+
         })
     .isRequired(),
     tournamentId: uu5String(255).isRequired()
@@ -14,10 +14,10 @@ const TeamCreateDtoInType = shape({
 const TeamUpdateDtoInType = shape({
     id: uu5String(255).isRequired(),
     name: uu5String(255),
-    players: 
+    players:
         shape({
-            id: uu5String(255),
-            name: uu5String(255)
+            id: uu5String(255)
+
         }
     ),
     tournamentId: uu5String(255)
@@ -35,7 +35,7 @@ const TeamGetDtoInType = shape({
 //   name: String,
 //   players: [                        // embedded or referenced players
 //     {
-//       id: String,                  // player id 
+//       id: String,                  // player id
 //       name: String
 //     }
 //   ],
