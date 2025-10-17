@@ -31,11 +31,7 @@
       },
       "player/update": {
         "sysStateList": ["active"],
-        "profileList": []
-      },
-      "login": {
-        "sysStateList": ["active"],
-        "profileList": ["Public","Executives","AwidLicenseOwner","AsidAuthorities","AsidExecutives","AsidLicenseOwner","Authenticated","AwidInitiator"]
+        "profileList": ["Public"]
       },
       "tournament/create": {
         "sysStateList": ["active"],
