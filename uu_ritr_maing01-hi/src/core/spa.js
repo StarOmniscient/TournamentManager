@@ -8,17 +8,22 @@ import Config from "./config/config.js";
 import Home from "../routes/home.js";
 //@@viewOff:imports
 
+
 //@@viewOn:constants
 const About = Utils.Component.lazy(() => import("../routes/about.js"));
 const InitAppWorkspace = Utils.Component.lazy(() => import("../routes/init-app-workspace.js"));
 const ControlPanel = Utils.Component.lazy(() => import("../routes/control-panel.js"));
 const Login = Utils.Component.lazy(() => import("../routes/login.js"));
+const Tournaments = Utils.Component.lazy(() => import("../routes/tournament.js"));
+const Tournament = Utils.Component.lazy(() => import("../routes/tournament-detail.js"));
 
 const ROUTE_MAP = {
-  "": { redirect: "home" },
+  "": { redirect: "login" },
   home: (props) => <Home {...props} />,
   about: (props) => <About {...props} />,
   login: (props) => <Login {...props} />,
+  tournaments: (props) => <Tournaments {...props} />,
+  tournamentDetail: (props) => <Tournament {...props} />,
   "sys/uuAppWorkspace/initUve": (props) => <InitAppWorkspace {...props} />,
   controlPanel: (props) => <ControlPanel {...props} />,
   "*": () => (

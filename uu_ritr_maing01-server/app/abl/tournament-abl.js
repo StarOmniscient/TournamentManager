@@ -16,8 +16,8 @@ class TournamentAbl {
     this.dao = DaoFactory.getDao("tournament");
   }
 
-  async list(awid, dtoIn) {
-    
+  async list(awid) {
+    return this.dao.list(awid);
   }
 
   async get(awid, dtoIn) {
@@ -25,7 +25,12 @@ class TournamentAbl {
 
     if (!validationResult.isValid()) {
       throw new Error("InvalidDtoIn");
-  }
+
+    }
+    const out = await this.dao.get(awid, dtoIn.id);
+    
+    return out;
+
   }
 
   async update(awid, dtoIn) {
@@ -42,6 +47,12 @@ class TournamentAbl {
     if (!validationResult.isValid()) {
       throw new Error("InvalidDtoIn");
   }
+
+    const out = await this.dao.create({
+      awid,
+      ...dtoIn
+    })
+    return out;
   }
 
 }

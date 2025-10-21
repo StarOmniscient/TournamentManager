@@ -37,30 +37,30 @@ class PlayerAbl {
     const validationResult = this.validator.validate("PlayerCreateDtoInType", dtoIn);
 
     if (!validationResult.isValid()) {
-      throw new Error("InvalidDtoIn");
+      throw new Error(Errors.Create.InvalidDtoIn);
   }
     if (!dtoIn.name) {
-      throw new Error("NameMissing");
+      throw new Error(Errors.Create.NameMissing);
     }
     if (!dtoIn.password) {
-      throw new Error("PasswordMissing");
+      throw new Error(Errors.Create.PasswordMissing);
     }
     const edupage = new Edupage()
     try {
     await edupage.login(dtoIn.name, dtoIn.password)
     } catch (e) {
       if (e.name == "LoginError") {
-        throw new Error("InvalidCredentials");
+        throw new Error(Errors.Create.InvalidCredentials);
       }
     }
 
     if (!edupage.user) {
-      throw new Error("UserNotFound");
+      throw new Error(Errors.Create.UserNotFound);
     }
     const user = {
       id: edupage.user.id,
       name: `${edupage.user.firstname} ${edupage.user.lastname}`,
-      school: edupage.user.origin,
+      school: edupage.user.origin.trim().toLowerCase(),
       role: edupage.user.userString.replace(edupage.user.id, "").trim().toLowerCase()
     }
 

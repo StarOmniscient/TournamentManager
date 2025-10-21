@@ -16,8 +16,7 @@ class TeamAbl {
     this.dao = DaoFactory.getDao("team");
   }
 
-  async list(awid, dtoIn) {
-    
+  async list(awid) {
   }
 
   async get(awid, dtoIn) {

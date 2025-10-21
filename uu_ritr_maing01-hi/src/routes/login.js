@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Calls from "../calls.js";
 import { withRoute } from "uu_plus4u5g02-app";
+import {useRoute} from "uu5g05";
 
 // ======================
 // 🎨 ŠTÝLY
@@ -139,6 +140,14 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [route, setRoute] = useRoute();
+
+  useEffect(() => {
+    const player = sessionStorage.getItem("player");
+    if (player) {
+      setRoute("tournaments");
+    }
+  }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -148,7 +157,7 @@ export default function LoginPage() {
     try {
       const res = await Calls.PlayerCreate({ name: username, password: password });
       sessionStorage.setItem("player", JSON.stringify(res));
-      window.location.href = "/tournaments";
+      setRoute("tournaments");
     } catch (e) {
       console.log(e);
       setError(e.message);

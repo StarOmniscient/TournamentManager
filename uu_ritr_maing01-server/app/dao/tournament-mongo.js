@@ -19,7 +19,7 @@ class TournamentMongo extends UuObjectDao {
     return await super.findOne(filter);
   }
 
-  async getAll(awid) {
+  async list(awid) {
     let filter = {
       awid: awid,
     };

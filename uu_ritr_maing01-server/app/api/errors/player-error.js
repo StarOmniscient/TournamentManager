@@ -6,15 +6,71 @@ const PLAYER_ERROR_PREFIX = `${RitrMainUseCaseError.ERROR_PREFIX}player/`;
 const Create = {
   UC_CODE: `${PLAYER_ERROR_PREFIX}create/`,
 
+  InvalidDtoIn: class extends RitrMainUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${Init.UC_CODE}invalidDtoIn`;
+      this.message = "DtoIn is not valid.";
+    }
+  },
+
+  NameMissing: class extends RitrMainUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${Create.UC_CODE}nameMissing`;
+      this.message = "Name is missing.";
+    }
+  },
+
+  PasswordMissing: class extends RitrMainUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${Create.UC_CODE}passwordMissing`;
+      this.message = "Password is missing.";
+    }
+  },
+
+  InvalidCredentials: class extends RitrMainUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${Create.UC_CODE}invalidCredentials`;
+      this.message = "Invalid credentials.";
+    }
+  },
+
+  UserNotFound: class extends RitrMainUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${Create.UC_CODE}userNotFound`;
+      this.message = "User not found.";
+    }
+  }
+
 };
 
 const Update = {
   UC_CODE: `${PLAYER_ERROR_PREFIX}update/`,
 
+  InvalidDtoIn: class extends RitrMainUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${Init.UC_CODE}invalidDtoIn`;
+      this.message = "DtoIn is not valid.";
+    }
+  },
+
 };
 
 const Get = {
   UC_CODE: `${PLAYER_ERROR_PREFIX}get/`,
+
+  InvalidDtoIn: class extends RitrMainUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${Init.UC_CODE}invalidDtoIn`;
+      this.message = "DtoIn is not valid.";
+    }
+  },
 
 };
 

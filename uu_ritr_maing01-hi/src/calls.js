@@ -52,7 +52,19 @@ const Calls = {
   PlayerUpdate(dtoIn) {
     const commandUri = Calls.getCommandUri("player/update");
     return Calls.call("post", commandUri, dtoIn);
+  },
+
+  listTournaments() {
+    const commandUri = Calls.getCommandUri("tournament/list");
+    return Calls.call("get", commandUri);
+  },
+
+  getTournament(dtoIn) {
+    const commandUri = Calls.getCommandUri("tournament/get");
+    return Calls.call("get", commandUri, dtoIn);
   }
+
+
 
 };
 
