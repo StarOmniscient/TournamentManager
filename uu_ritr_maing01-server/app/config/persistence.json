@@ -10,9 +10,6 @@
         "player": {
           "realization": "dao/PlayerMongo"
         },
-        "login": {
-          "realization": "dao/LoginMongo"
-        },
         "tournament": {
           "realization": "dao/TournamentMongo"
         },

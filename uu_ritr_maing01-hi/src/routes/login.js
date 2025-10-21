@@ -4,11 +4,13 @@ import Uu5Elements from "uu5g05-elements";
 import Plus4U5Elements from "uu_plus4u5g02-elements";
 import { withRoute } from "uu_plus4u5g02-app";
 
+
 import Config from "./config/config.js";
 import WelcomeRow from "../bricks/welcome-row.js";
 import RouteBar from "../core/route-bar.js";
 import importLsi from "../lsi/import-lsi.js";
 import Calls from "../calls.js";
+
 
 //@@viewOff:imports
 
@@ -44,20 +46,29 @@ let login = createVisualComponent({
 
   render(props) {
     //@@viewOn:private
-    const { identity } = useSession();
+    const { session } = useSession();
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+  
 
     async function handleSubmit(e) {
-  e.preventDefault();
-  setLoading(true);
-  setError(null);
+      e.preventDefault();
+      setLoading(true);
+      setError(null);
 
-  const res = await Calls.login({ username, password })
+      try {
+        const res = await Calls.PlayerCreate({ name: username, password: password });
+        sessionStorage.setItem("player", JSON.stringify(res));
+        window.location.href = "/tournaments";
+      } catch (e) {
+        console.log(e);
+        setError(e.message);
+      }
 
-}
+      setLoading(false);
+    }
     //@@viewOff:private
 
     //@@viewOn:interface
@@ -68,13 +79,19 @@ let login = createVisualComponent({
     return (
       <div>
         <form onSubmit={handleSubmit}>
-          <input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Username"/>
-          <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password"/>
-          <button type="submit" disabled={loading}>Login</button>
-          {error && <div style={{color: 'red'}}>{error}</div>}
+          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+          />
+          <button type="submit" disabled={loading}>
+            Login
+          </button>
+          {error && <div style={{ color: "red" }}>{error}</div>}
         </form>
       </div>
-      
     );
     //@@viewOff:render
   },
