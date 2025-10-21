@@ -1,105 +1,176 @@
-//@@viewOn:imports
-import { Utils, createVisualComponent, useSession, Lsi, useState } from "uu5g05";
-import Uu5Elements from "uu5g05-elements";
-import Plus4U5Elements from "uu_plus4u5g02-elements";
+import React, { useState } from "react";
+import Calls from "../calls.js";
 import { withRoute } from "uu_plus4u5g02-app";
 
-
-import Config from "./config/config.js";
-import WelcomeRow from "../bricks/welcome-row.js";
-import RouteBar from "../core/route-bar.js";
-import importLsi from "../lsi/import-lsi.js";
-import Calls from "../calls.js";
-
-
-//@@viewOff:imports
-
-//@@viewOn:constants
-//@@viewOff:constants
-
-//@@viewOn:css
-const Css = {
-  icon: () =>
-    Config.Css.css({
-      fontSize: 48,
-      lineHeight: "1em",
-    }),
-};
-//@@viewOff:css
-
-//@@viewOn:helpers
-
-//@@viewOff:helpers
-
-let login = createVisualComponent({
-  //@@viewOn:statics
-  uu5Tag: Config.TAG + "login",
-  //@@viewOff:statics
-
-  //@@viewOn:propTypes
-  propTypes: {},
-  //@@viewOff:propTypes
-
-  //@@viewOn:defaultProps
-  defaultProps: {},
-  //@@viewOff:defaultProps
-
-  render(props) {
-    //@@viewOn:private
-    const { session } = useSession();
-    const [password, setPassword] = useState("");
-    const [username, setUsername] = useState("");
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-  
-
-    async function handleSubmit(e) {
-      e.preventDefault();
-      setLoading(true);
-      setError(null);
-
-      try {
-        const res = await Calls.PlayerCreate({ name: username, password: password });
-        sessionStorage.setItem("player", JSON.stringify(res));
-        window.location.href = "/tournaments";
-      } catch (e) {
-        console.log(e);
-        setError(e.message);
-      }
-
-      setLoading(false);
-    }
-    //@@viewOff:private
-
-    //@@viewOn:interface
-    //@@viewOff:interface
-
-    //@@viewOn:render
-    const attrs = Utils.VisualComponent.getAttrs(props);
-    return (
-      <div>
-        <form onSubmit={handleSubmit}>
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-          />
-          <button type="submit" disabled={loading}>
-            Login
-          </button>
-          {error && <div style={{ color: "red" }}>{error}</div>}
-        </form>
-      </div>
-    );
-    //@@viewOff:render
+// ======================
+// 🎨 ŠTÝLY
+// ======================
+const styles = {
+  page: {
+    minHeight: "100vh",
+    backgroundColor: "#111",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    color: "#fff",
+    fontFamily: "Arial, sans-serif",
   },
-});
+  card: {
+    backgroundColor: "#111",
+    padding: "40px",
+    borderRadius: "16px",
+    boxShadow: "0 0 40px rgba(0, 0, 0, 0.5)",
+    width: "100%",
+    maxWidth: "360px",
+    textAlign: "center",
+  },
+  logo: {
+    width: "150px",
+    marginBottom: "20px",
+  },
+  title: {
+    fontSize: "42px",
+    fontWeight: "bold",
+    marginBottom: "10px",
+  },
+  subtitle: {
+    color: "#ccc",
+    fontSize: "20px",
+    marginBottom: "20px",
+  },
+  input: {
+    width: "100%",
+    padding: "12px 16px",
+    marginBottom: "16px",
+    border: "none",
+    borderRadius: "10px",
+    backgroundColor: "#222",
+    color: "white",
+    fontSize: "16px",
+    outline: "none",
+  },
+  button: {
+    width: "100%",
+    backgroundColor: "#f7931e",
+    border: "none",
+    borderRadius: "10px",
+    padding: "12px 0",
+    color: "white",
+    fontSize: "18px",
+    fontWeight: "bold",
+    cursor: "pointer",
+    transition: "background-color 0.3s",
+  },
+  buttonHover: {
+    backgroundColor: "#ffa733",
+  },
+  error: {
+    color: "#ff5555",
+    marginBottom: "10px",
+  },
+};
 
-login = withRoute(login, { authenticated: false });
+// ======================
+// 🧩 CUSTOM KOMPONENTY
+// ======================
+const LoginLogo = () => (
+  <div>
+    <img
+      src="../assets/MatchUPlogo.png"
+      alt="MatchUP Logo"
+      style={styles.logo}
+    />
+    <div style={styles.title}>MatchUP</div>
+    <div style={styles.subtitle}>Log in</div>
+  </div>
+);
 
-//@@viewOn:exports
-export { login };
-export default login;
-//@@viewOff:exports
+const LoginInput = ({ type = "text", placeholder, value, onChange }) => (
+  <input
+    type={type}
+    placeholder={placeholder}
+    value={value}
+    onChange={(e) => onChange(e.target.value)}
+    style={styles.input}
+  />
+);
+
+const LoginButton = ({ text, onClick, loading }) => {
+  const [hover, setHover] = useState(false);
+  return (
+    <button
+      onClick={onClick}
+      style={{
+        ...styles.button,
+        ...(hover ? styles.buttonHover : {}),
+      }}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      disabled={loading}
+    >
+      {loading ? "Loading..." : text}
+    </button>
+  );
+};
+
+const LoginError = ({ message }) => (
+  message ? <div style={styles.error}>{message}</div> : null
+);
+
+const LoginForm = ({ onSubmit, username, setUsername, password, setPassword, error, loading }) => (
+  <form onSubmit={onSubmit}>
+    <LoginInput placeholder="Username" value={username} onChange={setUsername} />
+    <LoginInput
+      type="password"
+      placeholder="Password"
+      value={password}
+      onChange={setPassword}
+    />
+    <LoginError message={error} />
+    <LoginButton text="Login" loading={loading} />
+  </form>
+);
+
+// ======================
+// 🚀 HLAVNÝ KOMPONENT
+// ======================
+export default function LoginPage() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+
+    try {
+      const res = await Calls.PlayerCreate({ name: username, password: password });
+      sessionStorage.setItem("player", JSON.stringify(res));
+      window.location.href = "/tournaments";
+    } catch (e) {
+      console.log(e);
+      setError(e.message);
+    }
+
+    setLoading(false);
+  }
+
+  return (
+    <div style={styles.page}>
+      <div style={styles.card}>
+        <LoginLogo />
+        <LoginForm
+          onSubmit={handleSubmit}
+          username={username}
+          setUsername={setUsername}
+          password={password}
+          setPassword={setPassword}
+          error={error}
+          loading={loading}
+        />
+      </div>
+    </div>
+  );
+}
