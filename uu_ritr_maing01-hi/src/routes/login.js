@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Calls from "../calls.js";
 import { withRoute } from "uu_plus4u5g02-app";
-import {useRoute} from "uu5g05";
-
+import { useRoute } from "uu5g05";
+import DarkVeil from "../bricks/DarkVeil.js";
 // ======================
 // 🎨 ŠTÝLY
 // ======================
 const styles = {
   page: {
     minHeight: "100vh",
-    backgroundColor: "#111",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -49,6 +48,8 @@ const styles = {
     color: "white",
     fontSize: "16px",
     outline: "none",
+        fontFamily: "Figtree, sans-serif",
+
   },
   button: {
     width: "100%",
@@ -61,6 +62,7 @@ const styles = {
     fontWeight: "bold",
     cursor: "pointer",
     transition: "background-color 0.3s",
+    fontFamily: "Figtree, sans-serif",
   },
   buttonHover: {
     backgroundColor: "#ffa733",
@@ -76,13 +78,8 @@ const styles = {
 // ======================
 const LoginLogo = () => (
   <div>
-    <img
-      src="../assets/MatchUPlogo.png"
-      alt="MatchUP Logo"
-      style={styles.logo}
-    />
+    <img src="../assets/MatchUPlogo.png" alt="MatchUP Logo" style={styles.logo} />
     <div style={styles.title}>MatchUP</div>
-    <div style={styles.subtitle}>Log in</div>
   </div>
 );
 
@@ -114,20 +111,14 @@ const LoginButton = ({ text, onClick, loading }) => {
   );
 };
 
-const LoginError = ({ message }) => (
-  message ? <div style={styles.error}>{message}</div> : null
-);
+const LoginError = ({ message }) => (message ? <div style={styles.error}>{message}</div> : null);
 
 const LoginForm = ({ onSubmit, username, setUsername, password, setPassword, error, loading }) => (
   <form onSubmit={onSubmit}>
     <LoginInput placeholder="Username" value={username} onChange={setUsername} />
-    <LoginInput
-      type="password"
-      placeholder="Password"
-      value={password}
-      onChange={setPassword}
-    />
+    <LoginInput type="password" placeholder="Password" value={password} onChange={setPassword} />
     <LoginError message={error} />
+    
     <LoginButton text="Login" loading={loading} />
   </form>
 );
@@ -142,12 +133,12 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [route, setRoute] = useRoute();
 
-  useEffect(() => {
-    const player = sessionStorage.getItem("player");
-    if (player) {
-      setRoute("tournaments");
-    }
-  }, []);
+  // useEffect(() => {
+  //   const player = sessionStorage.getItem("player");
+  //   if (player) {
+  //     setRoute("tournaments");
+  //   }
+  // }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -167,7 +158,21 @@ export default function LoginPage() {
   }
 
   return (
-    <div style={styles.page}>
+  <div style={{ position: "relative", width: "100%", height: "100vh", overflow: "hidden" }}>
+    {/* Background */}
+    <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
+      <DarkVeil
+        speed={1.5}
+        hueShift={213}
+        noiseIntensity={0}
+        scanlineFrequency={0.5}
+        scanlineIntensity={0}
+        warpAmount={0}
+      />
+    </div>
+
+    {/* Foreground */}
+    <div style={{ ...styles.page, position: "relative", zIndex: 1 }}>
       <div style={styles.card}>
         <LoginLogo />
         <LoginForm
@@ -181,5 +186,7 @@ export default function LoginPage() {
         />
       </div>
     </div>
-  );
+  </div>
+);
+
 }

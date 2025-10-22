@@ -8,7 +8,6 @@ import Config from "./config/config.js";
 import Home from "../routes/home.js";
 //@@viewOff:imports
 
-
 //@@viewOn:constants
 const About = Utils.Component.lazy(() => import("../routes/about.js"));
 const InitAppWorkspace = Utils.Component.lazy(() => import("../routes/init-app-workspace.js"));
@@ -16,6 +15,7 @@ const ControlPanel = Utils.Component.lazy(() => import("../routes/control-panel.
 const Login = Utils.Component.lazy(() => import("../routes/login.js"));
 const Tournaments = Utils.Component.lazy(() => import("../routes/tournament.js"));
 const Tournament = Utils.Component.lazy(() => import("../routes/tournament-detail.js"));
+
 
 const ROUTE_MAP = {
   "": { redirect: "login" },
