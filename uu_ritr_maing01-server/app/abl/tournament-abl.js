@@ -74,11 +74,7 @@ class TournamentAbl {
 
     const tournament = await this.dao.get({ awid, id: dtoIn.id });
     if (!tournament) {
-      // If tournament doesn't exist, we can just return or throw.
-      // Returning null or similar to indicate it's already gone or not found.
-      // But for now, let's proceed to try to remove it (maybe it was partially deleted?)
-      // Actually, if we want to delete teams, we need the tournament object.
-      // If it's not found, we can't delete teams, so we might as well just try to delete the tournament ID (idempotent)
+      // if it causes problem then TODO othervise ignore
     }
 
     if (tournament) {
@@ -270,11 +266,11 @@ class TournamentAbl {
     const validationResult = this.validator.validate("TournamentUpdateDtoInType", dtoIn);
     if (!validationResult.isValid()) throw new Errors.Update.InvalidDtoIn();
 
-    // try {
-    //   AuthHelper.verifyToken(dtoIn.token);
-    // } catch (e) {
-    //   throw new Errors.AuthenticationRequired();
-    // }
+    try {
+      AuthHelper.verifyToken(dtoIn.token);
+    } catch (e) {
+      throw new Errors.AuthenticationRequired();
+    }
 
     const tournament = await this.dao.get({ awid, id: dtoIn.id });
     if (!tournament) throw new Errors.Update.TournamentNotFound();
@@ -401,11 +397,11 @@ class TournamentAbl {
       throw new Errors.Create.InvalidDtoIn();
     }
 
-    // try {
-    //   AuthHelper.verifyToken(dtoIn.token);
-    // } catch (e) {
-    //   throw new Errors.AuthenticationRequired();
-    // }
+    try {
+      AuthHelper.verifyToken(dtoIn.token);
+    } catch (e) {
+      throw new Errors.AuthenticationRequired();
+    }
 
     if (!dtoIn.name) {
       throw new Errors.Create.NameMissing();
@@ -430,12 +426,6 @@ class TournamentAbl {
     }
     if (!dtoIn.bracketType) {
       throw new Errors.Create.BracketTypeMissing();
-    }
-
-    if (dtoIn.name === "G3N") {
-      const { generateTestTournaments } = require("./generate-test-tournaments.js");
-      generateTestTournaments(this, awid);
-      return;
     }
 
     const tId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
@@ -470,9 +460,3 @@ class TournamentAbl {
 }
 
 module.exports = new TournamentAbl();
-
-// UNCOMMENT THE LINES BELOW TO GENERATE 27 TEST TOURNAMENTS (RUN ONCE THEN COMMENT OUT AGAIN)
-
-// const { generateTestTournaments } = require("./generate-test-tournaments.js");
-// const awid = "22222222222222222222222222222222";
-// generateTestTournaments(module.exports, awid).catch(console.error);
